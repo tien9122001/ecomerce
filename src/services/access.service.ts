@@ -6,26 +6,9 @@ import { findByEmail } from "./shop.service";
 import { createTokenPair } from "../auth/authUtils";
 import { InvalidArgumentException, BadRequest } from "../core/error.respone";
 import { Types } from "mongoose";
+import { Roles } from "../core/constant";
+import { CONTROLLERBODY } from "../core/type.custom";
 
-const Roles = {
-    SHOP: "SHOP",
-    ADMIN: "ADMIN",
-    WRITER: "WRITER",
-    EDITOR: "EDITOR",
-};
-
-interface CONTROLLERBODY {
-    name : string,
-    email : string,
-    password : string,
-    refreshToken? : string | null
-}
-
-// interface LoginParams {
-//     email: string;
-//     password: string;
-//     refreshToken: string | null;
-// }
 
 class AccessService {
 

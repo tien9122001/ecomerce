@@ -1,16 +1,5 @@
 import shopModel from "../models/shop.model";
 
-interface ShopSelect {
-    email: string;
-    select: {
-        email: number;
-        password: number;
-        name: number;
-        status: number;
-        roles: number;
-    };
-}
-
 
 /**
  * 

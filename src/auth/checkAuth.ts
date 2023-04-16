@@ -1,11 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import {findById} from "../services/apikey.service"
 
-
-const HEADER = {
-    API_KEY : "x_api_key",
-    AUTHORIZATION : "authorization"
-}
+import { HEADER } from "../core/constant";
 
 
 export const apiKey = async (req : Request, res : Response, next : NextFunction) => {

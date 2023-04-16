@@ -1,17 +1,11 @@
 import keytokenModel from "../models/keytoken.model";
 import mongoose, { Types, model } from "mongoose";
 import crypto from "crypto";
-
-interface Params {
-    userId: Types.ObjectId;
-    publicKey: string;
-    privateKey: string;
-    refreshToken: string;
-}
+import { Params } from "../core/type.custom";
 
 class KeyTokenService {
     /**
-     *
+     * Store publickey to database or update it if exist
      * @param param0
      * @returns
      */

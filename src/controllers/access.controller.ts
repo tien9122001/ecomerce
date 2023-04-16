@@ -2,21 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import AccessService from "../services/access.service";
 import { OK, CREATED } from "../core/success.respone";
 import { Types } from "mongoose";
+import { RequestKeyStore, CONTROLLERBODY } from "../core/type.custom";
 
-interface CONTROLLERBODY {
-    name: string;
-    email: string;
-    password: string;
-    refreshToken?: string;
-}
-interface KeyStore extends Request {
-    keyStore: {
-        user: Types.ObjectId;
-    };
-}
+
+
 
 class AccessController {
-    logout = async (req: KeyStore, res: Response, next: NextFunction) => {
+    logout = async (req: RequestKeyStore, res: Response, next: NextFunction) => {
         
         new OK({
             message: "Logout success!!!!!!",

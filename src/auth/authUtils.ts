@@ -5,24 +5,10 @@ import { AuthenticationFail } from "../core/error.respone"
 
 import keyToken from "../services/keyToken.service"
 import mongoose, { Types } from "mongoose";
-import { parse } from "dotenv";
+import { RequestKeyStore } from "../core/type.custom";
+import { HEADER } from "../core/constant";
 
-const HEADER = {
-    API_KEY: "x_api_key",
-    AUTHORIZATION: "authorization",
-    CLIENT_ID : "x-client-id"
-};
 
-interface KeyStore extends Request {
-    keyStore : {
-        user : Types.ObjectId
-    }
-}
-
-interface TokenPair {
-    accessToken: string;
-    refreshToken: string;
-}
 
 export const createTokenPair =
     /**
@@ -58,7 +44,7 @@ export const createTokenPair =
     };
     
     export const authentication = asyncHandler(
-        async (req: KeyStore, res: Response, next: NextFunction) => {
+        async (req: RequestKeyStore, res: Response, next: NextFunction) => {
             
             const userId = req.headers[HEADER.CLIENT_ID] as string;
             if(!userId) throw new AuthenticationFail("Missing userId!!!!");
@@ -77,7 +63,7 @@ export const createTokenPair =
                 
                 // return next();
                 
-                // type RequestKeyStore =  KeyStore & Request
+                // type RequestKeyStore =  RequestKeyStore & Request
                 try {
                     // const decode = JSON.parse(JWT.verify(accessToken, keyStore.publicKey) as string);
                     console.log({testtttttttt: {
