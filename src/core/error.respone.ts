@@ -22,6 +22,10 @@ const ErrorStatus : ErrorParams = {
     BadRequest : {
         code : 400,
         message : "Bad Request!!!!!"
+    },
+    AuthenticationFail : {
+        code : 403,
+        message : "Authentication Fail!!!!!!!!!"
     }
 }
 
@@ -63,6 +67,13 @@ export class InvalidArgumentException extends ErrorRespone {
 
 export class BadRequest extends ErrorRespone {
     constructor(message : string = ErrorStatus["BadRequest"].message, status : number = ErrorStatus["BadRequest"].code) {
+        super(message, status)
+    }
+}
+
+
+export class AuthenticationFail extends ErrorRespone {
+    constructor(message : string = ErrorStatus["AuthenticationFail"].message, status : number = ErrorStatus["AuthenticationFail"].code) {
         super(message, status)
     }
 }

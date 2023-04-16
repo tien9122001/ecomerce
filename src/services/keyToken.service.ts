@@ -1,5 +1,5 @@
 import keytokenModel from "../models/keytoken.model";
-import mongoose, { Types, mongo } from "mongoose";
+import mongoose, { Types, model } from "mongoose";
 import crypto from "crypto";
 
 interface Params {
@@ -52,6 +52,18 @@ class KeyTokenService {
             return error;
         }
     };
+
+    static findByUserId = async (userId : string) => {
+        return await keytokenModel.findOne( { user : new Types.ObjectId(userId)}).lean();
+    }
+
+    static removeKeyById = async (userId : string) => {
+        return await keytokenModel.findOneAndRemove({user : userId});
+    }
+
+    // static removeKeyById = async (userId : string) => {
+    //     return await keytokenModel.remove(userId);
+    // }
 }
 
 export default KeyTokenService;

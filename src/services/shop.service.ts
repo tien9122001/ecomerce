@@ -11,6 +11,13 @@ interface ShopSelect {
     };
 }
 
+
+/**
+ * 
+ * @param email 
+ * @param select 
+ * @returns 
+ */
 export const findByEmail = async (
     email: string,
     select: {

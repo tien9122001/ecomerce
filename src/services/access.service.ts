@@ -5,6 +5,7 @@ import KeyTokenService from "./keyToken.service";
 import { findByEmail } from "./shop.service";
 import { createTokenPair } from "../auth/authUtils";
 import { InvalidArgumentException, BadRequest } from "../core/error.respone";
+import { Types } from "mongoose";
 
 const Roles = {
     SHOP: "SHOP",
@@ -27,6 +28,13 @@ interface CONTROLLERBODY {
 // }
 
 class AccessService {
+
+    static logout = async (keyStore : {user : Types.ObjectId}) => {
+        const delKey = await KeyTokenService.removeKeyById(keyStore.user.toString());
+
+        return {delKey};
+    }
+
     static login = async ({
         email,
         password,
